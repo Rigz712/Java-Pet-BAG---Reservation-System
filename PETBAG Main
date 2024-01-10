@@ -1,0 +1,80 @@
+DISPLAY "Welcome to Pet BAG" 
+    
+   // Initializing a data structure to hold pet records and available spaces for dogs and cats – see note above.  dogSpaces = 30 and catSpaces = 12. 
+   INITIALIZE petDatabase as a new list to store pet records 
+   INITIALIZE dogSpaces as 30 
+   INITIALIZE catSpaces as 12 
+    
+   // Starting a loop that continues indefinitely until manually stopped 
+   WHILE true 
+       DISPLAY "Is the pet a dog or a cat? (dog/cat)" 
+       INPUT petCategory 
+        
+       // Checking if there is space available for the specified pet category and informing the user if no space is available 
+       IF petCategory is "dog" AND dogSpaces is 0 
+           DISPLAY "Sorry, no more boarding space available for dogs." 
+           CONTINUE 
+       ELSE IF petCategory is "cat" AND catSpaces is 0 
+           DISPLAY "Sorry, no more boarding space available for cats." 
+           CONTINUE 
+       END IF 
+ 
+       DISPLAY "Please enter the name of the pet:" 
+       INPUT petName 
+        
+       // Generating a unique ID for the pet to avoid conflicts with pets having the same name 
+       SET petID = generateUniqueID(petName) 
+       SEARCH petDatabase for petID 
+       IF petID found in petDatabase 
+           GET existing petRecord 
+           DISPLAY "Returning pet, updating information as needed." 
+       ELSE 
+           // Creating a new record for a pet that hasn't been recorded before 
+           INITIALIZE petRecord as a new Map to store individual pet data 
+           ADD petID to petRecord with key "ID" 
+           ADD petName to petRecord with key "Name" 
+           ADD petCategory to petRecord with key "Category" 
+       END IF 
+ 
+       // Collecting details about the pet – ‘cat’ or ‘dog’ 
+       DISPLAY "Please enter the type of pet:" 
+       INPUT petType 
+       ADD petType to petRecord with key "Type" 
+ 
+       DISPLAY "Please enter the age of the pet:" 
+       INPUT petAge 
+       ADD petAge to petRecord with key "Age" 
+ 
+       DISPLAY "Please enter the weight of the pet:" 
+       INPUT petWeight 
+       ADD petWeight to petRecord with key "Weight" 
+ 
+       DISPLAY "Please enter any special instructions:" 
+       INPUT specialInstructions 
+       ADD specialInstructions to petRecord with key "Special Instructions" 
+ 
+       // Ensuring that all fields are filled before saving the record 
+       IF petName is not EMPTY and petType is not EMPTY and petAge is not EMPTY and petWeight is not EMPTY and specialInstructions is not EMPTY 
+           IF petID not found in petDatabase 
+               // Adding the new pet record to the database and updating the available spaces 
+               ADD petRecord to petDatabase  
+//Decrement decreases the value of a variable by 1 for each check in 
+               IF petCategory is "dog" 
+                   DECREMENT dogSpaces by 1 
+               ELSE IF petCategory is "cat" 
+                   DECREMENT catSpaces by 1 
+               END IF 
+           END IF 
+           DISPLAY "The following information has been recorded:"  
+           DISPLAY petRecord 
+       ELSE 
+           // Prompting the user to re-enter any missing information 
+           DISPLAY "Error: Missing information. Please try again.” 
+       END IF 
+        
+   END WHILE 
+    
+   // Saving the collected pet data to a permanent storage database at the end of the session 
+   SAVE petDatabase to database 
+ 
+END 
