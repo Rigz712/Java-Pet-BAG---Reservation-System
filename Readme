@@ -1,0 +1,53 @@
+#PET BAG README
+
+Overview
+This pseudocode outlines the logic for a Pet Information System, a program designed to manage information about dogs and cats in a boarding facility. The system maintains a pet database, tracks available spaces for dogs and cats, and allows users to input and retrieve information about each pet.
+
+Instructions
+To understand and implement the pseudocode, follow these instructions:
+
+Welcome Message:
+
+The program starts by displaying a welcoming message to the user.
+Initialization:
+
+Initializes a pet database as a list to store pet records.
+Sets the initial number of spaces for dogs and cats.
+Main Loop:
+
+Creates an infinite loop for continuous interaction with the user.
+Pet Category Input:
+
+Asks the user to specify whether the pet is a dog or a cat.
+Checks available spaces for the specified category.
+Name Input:
+
+Prompts the user to enter the name of the pet.
+Unique ID Generation:
+
+Generates a unique ID for the pet based on criteria.
+Checks if the ID already exists in the pet database.
+Pet Record Handling:
+
+Updates existing pet records or creates a new one based on the ID.
+Type, Age, Weight, and Special Instructions Input:
+
+Collects additional information about the pet, including type, age, weight, and special instructions.
+Validation:
+
+Ensures all required fields are filled.
+Adds the pet record to the database and updates available spaces if the information is complete.
+Output and User Prompt:
+
+Displays the recorded pet information.
+Asks the user if they want to add another pet.
+Exit Loop:
+
+Allows the user to exit the loop when they no longer want to add pets.
+Database Save:
+
+Saves the pet database to a more permanent storage system, such as a database.
+Implementation
+To implement this pseudocode, using Java. Create functions for input validation, ID generation, and database operations. Ensure proper error handling and user prompts for a smooth user experience. The pseudocode serves as a guide for building a functional Pet Information System.
+
+Enjoy coding and managing pet information with the Pet Information System!
